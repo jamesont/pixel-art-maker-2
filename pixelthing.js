@@ -23,9 +23,9 @@ function makePallet(myColors, pixels = 10) {
     ];
   }
 
-  for (let i = 0; i < myColors.length; i++) {
-    var pallet = document.getElementById('pallet');
+  var pallet = document.getElementById('pallet');
 
+  for (let i = 0; i < myColors.length; i++) {
     newDiv = document.createElement('div');
     newDiv.style.height = pixels + 'px';
     newDiv.style.width = pixels + 'px';
@@ -42,29 +42,29 @@ function makePallet(myColors, pixels = 10) {
 
 function makeCanvas(height = 10, width = 10, pixels = 20) {
 
-  var container = document.getElementById('container');
+  var canvas = document.getElementById('container');
 
-  for (let i = 0; i < width; i++) {
-    for (let j = 0; j < height; j++) {
+  for (var i = 0; i < width; i++) {
+    for (var j = 0; j < height; j++) {
       var canvasDiv = document.createElement('div');
 
       canvasDiv.style.height = pixels + 'px';
       canvasDiv.style.width = pixels + 'px';
       canvasDiv.className = 'canvas-pixel';
 
-      container.appendChild(canvasDiv);
+      canvas.appendChild(canvasDiv);
     }
   }
-  container.style.width = ((width) * (pixels + 2)) + 'px';
-  container.style.height = ((height) * (pixels + 2)) + 'px';
-  container.addEventListener('click', setBackgroundColorHandler);
+  canvas.style.width = ((width) * (pixels + 2)) + 'px';
+  canvas.style.height = ((height) * (pixels + 2)) + 'px';
+  canvas.addEventListener('click', setBackgroundColorHandler);
+
 }
 
 function setBackgroundColorHandler(event) {
   if (event.target === event.currentTarget) {
     return;
   }
-
   event.target.style.borderColor = brushColor;
   event.target.style.backgroundColor = brushColor;
 }
@@ -73,5 +73,7 @@ function setBrushColorHandler(event) {
   if (event.target === event.currentTarget) {
     return;
   }
-  event.target.style.backgroundColor = brushColor
+  brushColor = event.target.style.backgroundColor
 }
+
+$('')

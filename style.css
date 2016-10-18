@@ -6,24 +6,33 @@
   border: 1px solid black;
 }
 
-#container1 {
-  width: 100%;
-}
-
-#canvas {
-  display: flex;
-  flex-wrap: wrap;
-  cursor: default;
-  margin: auto;
+#outer-container {
+  width: 100%
 }
 
 #pallet {
   display: flex;
   flex-wrap: wrap;
   cursor: default;
+  margin: auto;
+}
+
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  cursor: default;
   margin: 10px auto;
 }
 
-.pallet-pixel {
-  border-radius: %50;
+body {
+  background-color: AliceBlue;
 }
+
+
+/*#outside-container {
+  display: flex;
+  flex-wrap: wrap;
+  cursor: default;
+  margin: 10px auto;
+  background-color: Teal;
+}*/
