@@ -1,10 +1,15 @@
 'use strict';
 
+const PALLET_PIXEL_CLASS = 'pallet-pixel';
+const CANVAS_PIXEL_CLASS = 'canvas-pixel';
+
 window.onload = function run() {
   makePallet(undefined, 20);
   makeCanvas(20, 20, 20);
   // alert('im a thing');
 };
+
+var brushColor = '';
 
 function makePallet(myColors, pixels = 10) {
 
@@ -36,32 +41,37 @@ function makePallet(myColors, pixels = 10) {
 }
 
 function makeCanvas(height = 10, width = 10, pixels = 20) {
-  var canvas = document.getElementById('canvas');
 
-  for (let i = 0; i < height; i++) {
-    for (let j = 0; j < width; j++) {
-      var newDiv = document.createElement('div');
+  var container = document.getElementById('container');
 
-      newDiv.style.height = pixels + 'px';
-      newDiv.style.width = pixels + 'px';
-      newDiv.className = 'canvas-pixel';
-      container.appendChild(newDiv);
+  for (let i = 0; i < width; i++) {
+    for (let j = 0; j < height; j++) {
+      var canvasDiv = document.createElement('div');
+
+      canvasDiv.style.height = pixels + 'px';
+      canvasDiv.style.width = pixels + 'px';
+      canvasDiv.className = 'canvas-pixel';
+
+      container.appendChild(canvasDiv);
     }
   }
-
+  container.style.width = ((width) * (pixels + 2)) + 'px';
+  container.style.height = ((height) * (pixels + 2)) + 'px';
+  container.addEventListener('click', setBackgroundColorHandler);
 }
 
-function errorHandler() {
+function setBackgroundColorHandler(event) {
   if (event.target === event.currentTarget) {
     return;
   }
-  brushColor = event.target.style.backgroundColor;
+
+  event.target.style.borderColor = brushColor;
+  event.target.style.backgroundColor = brushColor;
 }
 
 function setBrushColorHandler(event) {
-  // Never set the brush color to the pallets bg color
   if (event.target === event.currentTarget) {
     return;
   }
-  brushColor = event.target.style.backgroundColor;
+  event.target.style.backgroundColor = brushColor
 }
